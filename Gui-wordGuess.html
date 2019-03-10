@@ -1,0 +1,169 @@
+
+<html>
+	<head>
+		<style>
+		
+		.header{
+		background-color: palevioletred;
+			padding: 5px;
+			text-align: center;
+			width: 100%;
+			
+		}
+			.form1 {background-color: pink;
+				width: 100%;
+				height: 30%;
+				padding:50px;
+			   
+				text-align: center;
+				
+             
+			}
+			.form2{
+				
+				background-color: papayawhip;
+				padding :30px;
+				height: 35%;
+				text-align: center;
+				
+				width: 100%;
+				
+			}
+			
+			
+		</style>
+	
+	
+	
+	</head>
+<body>
+<script type="text/javascript" >
+		
+
+	var secret=[] ;
+         
+	     var letter;
+          var strikes = 0 ; 
+	var word ;
+	
+	function getWord(){
+			
+				
+
+	   	word=document.getElementById("form1").value;
+			
+		
+		
+		
+// Create a variable to store the number of bad guesses
+
+// Fill this array with placeholders for guessing
+for (i = 0; i < word.length; i++) {
+  secret[i]="-";
+}
+		
+	document.getElementById("print2").innerHTML=secret.join(" ");
+	
+	
+	}
+	
+	
+	
+	
+	
+	function checkLetter(){
+			
+	 letter=document.getElementById("form2").value;
+			
+		
+
+  // Prompt Player 2 to guess a letter and store as
+  // a variable.
+  if(strikes < 3 && secret.indexOf("_") <= 0){
+
+  // If the letter does not exist in the word,
+  // add it to the bad guesses.
+  if (word.indexOf(letter) < 0) {
+    // add a strike
+    strikes++;
+    alert("Bad guess!");
+
+  // If the letter exists in the word, we need to
+  // add it to the good guesses array
+  } else {
+    for (i = 0; i < word.length; i++) {
+      // Each time the guess letter is found, we
+      // add it as a good guess in the same spot
+      if (word[i] === letter) {
+        secret[i] = letter;
+      }
+    }
+	  
+  }
+			document.getElementById("print2").innerHTML= secret.join(" ");
+	  
+ if(secret.indexOf("-") < 0) {
+	          
+
+	   document.getElementById("1").innerHTML=("Congratulations on your win! the word :"+word);
+	 
+          }
+
+	  
+	  
+ }
+		else if(strikes === 3)
+            {
+				 document.getElementById("1").innerHTML=("Sorry, please play again!the word :"+word);
+		      
+		         
+	        }
+		
+		
+
+	}
+	
+
+	
+
+		
+	
+
+	  	
+		
+
+	
+</script>
+	<div class="header"><h1>play with your friend</h1></div>
+	
+	<div class="form1">
+		<h1>player 1</h1>
+		<form  >
+			<h2>enter your secret word:</h2>
+      <input type="password" name="word" id="form1" />	<br> 
+		<input type="button" value="play" onclick="getWord()" name="play" />
+	</form> 
+		
+		  
+		
+		</div>
+		 
+	<div class="form2">
+		<p id="1"></p>
+	<h1>player 2 </h1>
+	<form   >
+	<h2>guess the word:</h2>
+	<input type=text name="letter" id="form2" /><br>
+	<input type="button" value="guess" name="guess" onclick="checkLetter()"/>
+		
+	
+</form>
+			<p id="print2"></p>
+			
+	
+	
+	</div>
+</body>
+
+
+</html>
